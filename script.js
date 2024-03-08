@@ -28,11 +28,22 @@ function startGame() {
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
     setNextQuestion();
+    displayRemainingQuestions();
 }
 
+
+function displayRemainingQuestions() {
+    const remainingQuestions = questions.length - currentQuestionIndex;
+    document.getElementById('remaining-questions').innerText = `Remaining Questions: ${remainingQuestions} out of ${questions.length}`;
+}
+
+
+
+// Call the function after setting the next question
 function setNextQuestion() {
     resetState();
     showQuestion(shuffledQuestions[currentQuestionIndex]);
+    displayRemainingQuestions(); // Display remaining questions
 }
 
 function resetState() {
@@ -63,6 +74,7 @@ function selectAnswer(selectedButton) {
     Array.from(answerButtonsElement.children).forEach(button => {
         button.disabled = true;
         setStatusClass(button, button.dataset.correct);
+        displayRemainingQuestions();
     });
 
     const correct = selectedButton.dataset.correct;
@@ -689,6 +701,96 @@ const questions = [
             { text: "paginate", correct: false },
             { text: "mongoose-paginate", correct: true },
             { text: "express-pagination", correct: false }
+        ]
+    },
+    {
+        question: "What does MERN Stack stand for?",
+        answers: [
+            { text: "MongoDB, Express.js, React.js, Node.js", correct: true },
+            { text: "MySQL, Express.js, React.js, Node.js", correct: false },
+            { text: "Mongoose, Ember.js, React.js, Node.js", correct: false },
+            { text: "Markdown, Elm, Redux, NestJS", correct: false }
+        ]
+    },
+    {
+        question: "Which of the following is not a part of the Next.js framework?",
+        answers: [
+            { text: "React.js", correct: false },
+            { text: "Express.js", correct: true },
+            { text: "Node.js", correct: false },
+            { text: "Next.js", correct: false }
+        ]
+    },
+    {
+        question: "What is the purpose of MongoDB in the MERN Stack?",
+        answers: [
+            { text: "Frontend framework", correct: false },
+            { text: "Database management system", correct: true },
+            { text: "Backend web application framework", correct: false },
+            { text: "State management library", correct: false }
+        ]
+    },
+    {
+        question: "How can you start a new Next.js project?",
+        answers: [
+            { text: "npm init next-app my-app", correct: false },
+            { text: "create-next-app my-app", correct: true },
+            { text: "npm create next-app my-app", correct: false },
+            { text: "new-next my-app", correct: false }
+        ]
+    },
+    {
+        question: "Which file is used to configure routing in a Next.js application?",
+        answers: [
+            { text: "routes.js", correct: false },
+            { text: "next.config.js", correct: true },
+            { text: "server.js", correct: false },
+            { text: "pages/index.js", correct: false }
+        ]
+    },
+    {
+        question: "What is the purpose of the _app.js file in Next.js?",
+        answers: [
+            { text: "To define the layout and structure of the entire application", correct: true },
+            { text: "To contain global CSS styles for the application", correct: false },
+            { text: "To configure the server for production deployment", correct: false },
+            { text: "To handle authentication logic", correct: false }
+        ]
+    },
+    {
+        question: "What is the purpose of the getInitialProps function in Next.js?",
+        answers: [
+            { text: "To initialize the Redux store", correct: false },
+            { text: "To fetch data on the server side and pass it to the component as props", correct: true },
+            { text: "To handle authentication logic", correct: false },
+            { text: "To define routes for the application", correct: false }
+        ]
+    },
+    {
+        question: "Which command is used to start the development server in a Next.js project?",
+        answers: [
+            { text: "npm start", correct: false },
+            { text: "npm run dev", correct: true },
+            { text: "npm run build", correct: false },
+            { text: "npm run serve", correct: false }
+        ]
+    },
+    {
+        question: "What is the recommended deployment option for Next.js applications?",
+        answers: [
+            { text: "Shared hosting", correct: false },
+            { text: "Docker containers", correct: false },
+            { text: "Serverless platforms like Vercel or Netlify", correct: true },
+            { text: "Virtual private servers", correct: false }
+        ]
+    },
+    {
+        question: "Which of the following is a feature of Next.js?",
+        answers: [
+            { text: "Automatic code splitting", correct: true },
+            { text: "Client-side rendering only", correct: false },
+            { text: "No support for CSS-in-JS", correct: false },
+            { text: "Limited routing capabilities", correct: false }
         ]
     }
 ];
