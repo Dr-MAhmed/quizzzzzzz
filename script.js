@@ -23,6 +23,12 @@ nextButton.addEventListener('click', () => {
 });
 
 function startGame() {
+    gtag('event', 'start_quiz', {
+        'event_category': 'Quiz',
+        'event_label': 'Quiz Started'
+    });
+
+
     startButton.classList.add('hide');
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
